@@ -34,7 +34,7 @@
                             <a class="nav-link fw-bold" href="{{ route('index_qna') }}">{{ __('Q&A') }}</a>
                         </li>
                         <li>
-                            <a class="nav-link fw-bold" href="/about">{{ __('About') }}</a>
+                            <a class="nav-link fw-bold" href="about">{{ __('About') }}</a>
                         </li>
                     </ul>
 
