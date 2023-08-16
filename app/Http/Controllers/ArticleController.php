@@ -42,8 +42,19 @@ class ArticleController extends Controller
             'title' => 'required|min:3',
             'message' => 'required|min:15',
         ]);
-        
+
         $article = new Article;
+        $imageLink = NULL;
+        
+        if($request->file('image') != NULL){
+            
+            $imageName = $request->file('image')->getClientOriginalName();
+            $imageLink = 'images/'.$imageName;
+            $request->file('image')->move(public_path('images'), $imageName);
+            $article->image = $imageLink;
+        }
+        
+        
         $article->title = $validated['title'];
         $article->message = $validated['message'];
         $article->save();
@@ -74,6 +85,14 @@ class ArticleController extends Controller
             'title' => 'required|min:3',
             'message' => 'required|min:15',
         ]);
+
+        if($request->file('image') != NULL){
+            
+            $imageName = $request->file('image')->getClientOriginalName();
+            $imageLink = 'images/'.$imageName;
+            $request->file('image')->move(public_path('images'), $imageName);
+            $article->image = $imageLink;
+        }
 
         $article->title = $validated['title'];
         $article->message = $validated['message'];

@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Edit Article') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('articles.update', $article->id) }}">
+                    <form method="POST" action="{{ route('articles.update', $article->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
@@ -37,6 +37,21 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="image" class="col-md-4 col-form-label text-md-end">{{ __('Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="image" type="file"  class="sr-only" name="image" value="{{ asset($article->image) }}"autofocus>
+
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+ 
                         </div>
 
                         <div class="row mb-0">

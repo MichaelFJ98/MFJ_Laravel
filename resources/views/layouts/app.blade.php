@@ -62,6 +62,9 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @auth 
                                     {{-- TODO make foradmin only --}}
+                                    <a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}">
+                                        My profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('articles.create') }}">
                                         New Article
                                     </a>

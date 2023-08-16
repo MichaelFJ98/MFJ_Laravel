@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->string('bio');
+            $table->date('birthday');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

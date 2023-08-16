@@ -16,7 +16,15 @@
                     
                     @foreach ($articles as $article)
                         <h1>{{$article->title}}</h1>
-                        <p>{{$article->message}}</p>
+                        <div>
+                            <p>{{$article->message}}</p>
+                            @if($article->image != NULL)
+                                <img src="{{asset($article->image)}}" alt="article picture" width="300" height="250">
+                            @else
+                                <img src="{{asset("images/default_image.jpg")}}" alt="article picture" width="300" height="250">
+                            @endif
+                        </div>
+                        
                         <small>Published at <i>{{$article->created_at->format('H:i d/m/Y ')}}</i></small>
                         {{-- TODO make foradmin only --}}
                         @if (Auth::user()->is_admin == False)
