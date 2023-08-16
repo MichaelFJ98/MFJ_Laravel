@@ -79,6 +79,6 @@ class ArticleController extends Controller
         $article->message = $validated['message'];
         $article->save();
 
-        return redirect()->route('index_after_update')->with('status', 'Article updated!');
+        return redirect()->route('article_update')->with('status', 'Article updated!');
     }
 }
