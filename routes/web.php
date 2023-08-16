@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,11 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('/', [ArticleController::class, 'index'])->name('index');
+Route::get('/qna', [CategoryController::class, 'index'])->name('index_qna');
 
 //update routes
 Route::put('/', [ArticleController::class, 'index'])->name('article_update');
+Route::put('/qna', [CategoryController::class, 'index'])->name('category_update');
 
 Route::resource('articles', ArticleController::class);
 Route::resource('categories', CategoryController::class);

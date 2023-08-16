@@ -30,7 +30,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>
+                            <a class="nav-link fw-bold" href="{{ route('index_qna') }}">{{ __('Q&A') }}</a>
+                        </li>
+                        <li>
+                            <a class="nav-link fw-bold" href="/about">{{ __('About') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -58,7 +63,13 @@
                                     @auth 
                                     {{-- TODO make foradmin only --}}
                                     <a class="dropdown-item" href="{{ route('articles.create') }}">
-                                        New Post
+                                        New Article
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('categories.create') }}">
+                                        New Category
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('questions.create') }}">
+                                        New Question
                                     </a>
                                     
                                     @endauth
