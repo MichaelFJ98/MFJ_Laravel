@@ -13,8 +13,15 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     
+                    @foreach ($articles as $article)
+                        <h1>{{$article->title}}</h1>
+                        <p>{{$article->message}}</p>
+                        <small>Published at <i>{{$article->created_at}}</i></small>
+                        <hr>
+                    @endforeach
+                    
+                    {!! $articles->withQueryString()->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>
