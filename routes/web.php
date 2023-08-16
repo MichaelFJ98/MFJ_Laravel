@@ -16,6 +16,11 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [ArticleController::class, 'index'])->name('index');
 
+//update routes
+Route::put('/', [ArticleController::class, 'index'])->name('index_after_update');
+
+Route::resource('articles', ArticleController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

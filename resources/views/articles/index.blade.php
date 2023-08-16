@@ -17,8 +17,16 @@
                     @foreach ($articles as $article)
                         <h1>{{$article->title}}</h1>
                         <p>{{$article->message}}</p>
-                        <small>Published at <i>{{$article->created_at}}</i></small>
+                        <small>Published at <i>{{$article->created_at->format('H:i d/m/Y ')}}</i></small>
+                        {{-- TODO make foradmin only --}}
+                        @if (Auth::user()->is_admin == False)
+                            <a href="{{route('articles.edit', $article->id)}} ">
+                                Edit Article
+                            </a>
+                        @endif
                         <hr>
+
+                       
                     @endforeach
                     
                     {!! $articles->withQueryString()->links('pagination::bootstrap-5') !!}
