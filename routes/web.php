@@ -23,7 +23,7 @@ Route::get('/', [ArticleController::class, 'index'])->name('index');
 Route::get('/qna', [CategoryController::class, 'index'])->name('index_qna');
 Route::get('/users/{id}', [UserController::class, 'profile'])->name('profile');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/contact_us', [ContactController::class, 'index'])->name('contact_us');
+
 
 //update routes
 Route::put('/', [ArticleController::class, 'index'])->name('article_update');

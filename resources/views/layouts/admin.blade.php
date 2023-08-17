@@ -18,7 +18,7 @@
                         <a class="nav-link fw-bold" href="{{ route('about') }}">About</a>
                     </li>
                     <li>
-                        <a class="nav-link fw-bold" href="{{ route('contact_us') }}" >Contact Us</a>
+                        <a class="nav-link fw-bold" href="{{ route('contact.create') }}" >Contact Us</a>
                     </li>
                 </ul>
 
@@ -43,6 +43,9 @@
                             </a>
                             <a class="dropdown-item" href="" >
                                 Promote User
+                            </a>
+                            <a class="dropdown-item" href="{{route('contact.index')}}" >
+                                Contact Messages
                             </a>
                         </div>
                     </li>

@@ -8,8 +8,14 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-  public function index(){
-    return view('contact.index');
+  public function index(Request $request){
+
+    $contactForms = Contact::latest()->paginate(3);
+
+    return view('contact.index', compact('contactForms'));
+}
+  public function create(){
+    return view('contact.create');
   }
 
   public function store(Request $request){
