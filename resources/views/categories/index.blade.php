@@ -19,7 +19,7 @@
                             <h2>{{$category->name}}</h2>
                             {{-- TODO voor admin acc --}}
                             @auth
-                            @if (Auth::user()->is_admin == False)
+                            @if (Auth::user()->is_admin)
                             <a href="{{route('categories.edit', $category->id)}} ">
                                 Edit Category
                             </a>

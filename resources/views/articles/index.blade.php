@@ -28,7 +28,7 @@
                         <small>Published at <i>{{$article->created_at->format('H:i d/m/Y ')}}</i></small>
                         {{-- TODO make foradmin only --}}
                         @auth
-                            @if (Auth::user()->is_admin == False)
+                            @if (Auth::user()->is_admin)
                                 <a href="{{route('articles.edit', $article->id)}} ">
                                     Edit Article
                                 </a>

@@ -23,7 +23,8 @@ class User extends Authenticatable
         'birthday',
         'avatar',
         'bio',
-        'is_admin'
+        'is_admin',
+        'password'
         
     ];
 
