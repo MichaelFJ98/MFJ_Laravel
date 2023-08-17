@@ -36,6 +36,9 @@
                         <li>
                             <a class="nav-link fw-bold" href="about">{{ __('About') }}</a>
                         </li>
+                        <li>
+                            <a class="nav-link fw-bold" href="contact">{{ __('Contact Us') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
