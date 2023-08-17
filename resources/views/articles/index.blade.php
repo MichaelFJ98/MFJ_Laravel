@@ -15,7 +15,7 @@
                     @endif
                     
                     @foreach ($articles as $article)
-                        <h1>{{$article->title}}</h1>
+                        <h3>{{$article->title}}</h2>
                         <div>
                             <p>{{$article->message}}</p>
                             @if($article->image != NULL)

@@ -26,6 +26,8 @@ class UserFactory extends Factory
             'avatar' => 'route',
             'bio' => fake()->sentence(),
             'remember_token' => Str::random(10),
+            'is_admin' => false,
+
         ];
     }
 
