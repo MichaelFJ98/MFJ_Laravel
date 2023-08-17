@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     <h1>Sources</h1>
+                    
                     <ol>
                         <li><a href="https://www.itsolutionstuff.com/post/laravel-10-pagination-example-tutorialexample.html">
                                 https://www.itsolutionstuff.com/post/laravel-10-pagination-example-tutorialexample.html
@@ -21,6 +22,9 @@
                         <li><a href="https://getbootstrap.com/docs/5.0">
                                 https://getbootstrap.com/docs/5.0
                             </a>
+                        </li>
+                        <li>
+                            Demo videos from BW.
                         </li>
                     </ol>
                 </div>
