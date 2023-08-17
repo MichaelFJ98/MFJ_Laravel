@@ -5,6 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @if (!Auth::user()->is_admin)
+                    
+                
                 <div class="card-header">{{ __('My Profile') }}</div>
 
                 <div class="card-body">
@@ -80,6 +83,27 @@
                         </div>
                     </form>
                 </div>
+                @else
+                <div class="card-header ">
+                    <p>{{ 'Profile of '.$user->name }}</p>
+                    <a href="{{route('users.index')}}">Go back</a>
+                </div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('users.update', $user->id) }} " enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="md-flex flex-row py-2">
+                            <label>Admin Status</label>
+
+                            
+                            <input id="is_admin" type="checkbox" name="is_admin" autofocus>
+
+                        </div>
+
+                        <input type="submit" value="promote" >
+                    </form>
+                @endif
             </div>
         </div>
     </div>

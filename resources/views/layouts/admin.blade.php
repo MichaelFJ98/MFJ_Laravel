@@ -41,7 +41,7 @@
                             <a class="dropdown-item" href="{{ route('questions.create') }}">
                                 New Question
                             </a>
-                            <a class="dropdown-item" href="" >
+                            <a class="dropdown-item" href="{{route('users.index')}}" >
                                 Promote User
                             </a>
                             <a class="dropdown-item" href="{{route('contact.index')}}" >

@@ -8,6 +8,13 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index(Request $request){
+
+        $users = User::latest()->paginate(10);
+
+        return view('users.index', compact('users'));
+    }
+
     public function profile($id){
         $user = User::findOrFail($id);
 
@@ -29,28 +36,41 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
 
-        $validated = $request->validate([
-            'name' => 'required|min:3',
-            'bio' => 'required|min:3',
-            'birthday' => 'required',
-            
-        ]); 
 
-        $avatarLink = NULL;
-
-        if($request->file('avatar') != NULL){
+        if(!$request->is_admin){
+            $validated = $request->validate([
+                'name' => 'required|min:3',
+                'bio' => 'required|min:3',
+                'birthday' => 'required',
+                
+            ]); 
+    
+            $avatarLink = NULL;
+    
+            if($request->file('avatar') != NULL){
+                
+                $avatarName = $request->file('avatar')->getClientOriginalName();
+                $avatarLink = 'avatars/'.$avatarName;
+                $request->file('avatar')->move(public_path('avatars'), $avatarName);
+                $user->avatar = $avatarLink;
+            }
             
-            $avatarName = $request->file('avatar')->getClientOriginalName();
-            $avatarLink = 'avatars/'.$avatarName;
-            $request->file('avatar')->move(public_path('avatars'), $avatarName);
-            $user->avatar = $avatarLink;
+            $user->name = $validated['name'];
+            $user->bio = $validated['bio'];
+            $user->birthday = $validated['birthday'];
+            $user->save();
+            
+            return redirect()->route('index')->with('status', 'Profile updated!');
+        }
+        else{
+            $status = false;
+            if($request->is_admin == "on"){
+                $status = true;
+            }
+            $user->is_admin = $status;
+            $user->save();
+            return redirect()->route('index')->with('status', 'Userpowers updated!');
         }
         
-        $user->name = $validated['name'];
-        $user->bio = $validated['bio'];
-        $user->birthday = $validated['birthday'];
-        $user->save();
-
-        return redirect()->route('profile_update',$user->id)->with('status', 'Profile updated!');
     }
 }
