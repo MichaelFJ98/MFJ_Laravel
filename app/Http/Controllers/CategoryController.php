@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -73,5 +75,17 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->route('category_update')->with('status', 'Category updated!');
+    }
+
+    public function destroy($id){
+        if(Auth::user()->is_admin){
+            $category = Category::findOrFail($id);
+            $questions = Question::where('category_id', '=', $category->id)->delete();
+            $category->delete();
+
+            return redirect()->route('index')->with('status', 'Category deleted successfully');
+        }
+        else abort(403, "Only admins can delete articles");
+        
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -77,4 +78,14 @@ class QuestionController extends Controller
         return redirect()->route('index_qna')->with('status', 'Question updated!');
     }
     
+    public function destroy($id){
+        if(Auth::user()->is_admin){
+            $question = Question::findOrFail($id);
+            $question->delete();
+
+            return redirect()->route('index')->with('status', 'Question deleted successfully');
+        }
+        else abort(403, "Only admins can delete questions");
+        
+    }
 }

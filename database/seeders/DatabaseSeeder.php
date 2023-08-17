@@ -25,6 +25,19 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        \App\Models\Question::factory()->create([
+            'question' => 'This is question 1 for first category',
+            'answer' => 'This is answer 1 for first category',
+            'category_id' => '1',
+
+        ]);
+
+        \App\Models\Question::factory()->create([
+            'question' => 'This is question 1 for second category',
+            'answer' => 'This is answer 1 for second category',
+            'category_id' => '2',
+
+        ]);
         \App\Models\Article::factory(3)->create();
         \App\Models\Contact::factory(2)->create();
         \App\Models\Category::factory(2)->create();
