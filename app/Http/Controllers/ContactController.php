@@ -8,11 +8,18 @@ use App\Models\Contact;
 
 class ContactController extends Controller
 {
-  public function index(Request $request){
 
+
+  public function index(Request $request){
+    if(!Auth::user()->is_admin){
+      abort(403);
+    }else{
+
+    
     $contactForms = Contact::latest()->paginate(3);
 
     return view('contact.index', compact('contactForms'));
+  } 
 }
   public function create(){
     return view('contact.create');

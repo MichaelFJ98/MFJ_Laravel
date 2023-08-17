@@ -48,12 +48,20 @@
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                                   <div class="accordion-body">
                                     <p>{{$question->answer}}</p>
+                                    @auth
+                                      
+                                    @if (Auth::user()->is_admin)
+                                      
+                                    
                                     <a href="{{route('questions.edit', $question->id)}}" >Edit question</a>
                                     <form  method="post" action="{{route('questions.destroy', $question->id)}} " >
                                       @csrf
                                       @method('DELETE')
                                       <input type="submit" value="DELETE QUESTION" class="text-danger" onclick="return confirm('Are you sure you want to delete this question')">
-                                  </form>
+                                      
+                                    </form>
+                                    @endif
+                                    @endauth
                                   </div>
                                 </div>
                               </div>

@@ -14,20 +14,29 @@ class QuestionController extends Controller
         return $this->belongsTo('App\Models\Category');
     }
 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function create(){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+
+        
         $categories = Category::all();
         return view('questions.create', compact('categories'));
+        }
     }
 
     public function store(Request $request){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+
+        
         
 
         $validated = $request->validate([
@@ -45,26 +54,32 @@ class QuestionController extends Controller
         $question->save();
 
         return redirect()->route('index_qna')->with('status', 'Question added!');
+        }
     }
 
     public function edit($id){
         $question = Question::findOrFail($id);
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+
+        
 
         return view('questions.edit', compact('question'));
+        }
     }
 
     public function update($id,Request $request){
         $question = Question::findOrFail($id);
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+
+        
         
         $validated = $request->validate([
             'question' => 'required|min:3',
@@ -76,6 +91,7 @@ class QuestionController extends Controller
         $question->save();
 
         return redirect()->route('index_qna')->with('status', 'Question updated!');
+        }
     }
     
     public function destroy($id){

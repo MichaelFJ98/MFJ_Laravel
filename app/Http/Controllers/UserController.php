@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth',['except' => ['profile','edit']]);
+    }
     public function index(Request $request){
-
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
         $users = User::latest()->paginate(10);
 
         return view('users.index', compact('users'));
+        }
     }
 
     public function profile($id){
@@ -22,14 +29,15 @@ class UserController extends Controller
     }
 
     public function edit($id){
-        $user = User::findOrFail($id);
+        if(Auth::user()->id == $id || Auth::user()->is_admin){
+            $user = User::findOrFail($id);
 
-        //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
-
-        return view('users.edit', compact('user'));
+            return view('users.edit', compact('user'));
+        }
+        else{
+            abort(403);
+        }
+        
     }
 
     public function update($id,Request $request){

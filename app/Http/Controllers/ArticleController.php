@@ -25,18 +25,23 @@ class ArticleController extends Controller
 
     public function create(){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }
+        else{
+            return view('articles.create');
+        }
 
-        return view('articles.create');
+        
     }
 
     public function store(Request $request){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+
+        
 
         $validated = $request->validate([
             'title' => 'required|min:3',
@@ -60,26 +65,30 @@ class ArticleController extends Controller
         $article->save();
 
         return redirect()->route('index')->with('status', 'Article added!');
+        }
     }
 
     public function edit($id){
         $article = Article::findOrFail($id);
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
 
-        return view('articles.edit', compact('article'));
+            return view('articles.edit', compact('article'));
+        }
     }
 
     public function update($id,Request $request){
-        $article = Article::findOrFail($id);
+        
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+            $article = Article::findOrFail($id);
+        
         
         $validated = $request->validate([
             'title' => 'required|min:3',
@@ -99,6 +108,8 @@ class ArticleController extends Controller
         $article->save();
 
         return redirect()->route('article_update')->with('status', 'Article updated!');
+        }
+    
     }
 
     public function destroy($id){

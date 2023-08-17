@@ -24,19 +24,20 @@ class CategoryController extends Controller
 
     public function create(){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
-
-        return view('categories.create');
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }
+        else{
+            return view('categories.create');
+        }
     }
 
     public function store(Request $request){
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
-
+        if(!Auth::user()->is_admin){
+            abort(403);
+        
+        }else{
         $validated = $request->validate([
             'name' => 'required|min:3',
         ]);
@@ -46,27 +47,30 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->route('index_qna')->with('status', 'category added!');
+        }
     }
 
     public function edit($id){
-        $category = Category::findOrFail($id);
+        
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
-
-        return view('categories.edit', compact('category'));
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else{
+            $category = Category::findOrFail($id);
+            return view('categories.edit', compact('category'));
+        }
     }
 
     public function update($id,Request $request){
         $category = Category::findOrFail($id);
 
         //alleen admins mogen dit
-        // if(!Auth::user()->is_admin){
-        //     abort(403);
-        // }
-        
+        if(!Auth::user()->is_admin){
+            abort(403);
+        }else
+        {
+
         $validated = $request->validate([
             'name' => 'required|min:3',
         ]);
@@ -75,6 +79,7 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->route('category_update')->with('status', 'Category updated!');
+        }
     }
 
     public function destroy($id){
