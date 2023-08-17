@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Question;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class QuestionController extends Controller
 {
@@ -17,28 +18,63 @@ class QuestionController extends Controller
         // if(!Auth::user()->is_admin){
         //     abort(403);
         // }
-
-        return view('questions.create');
+        $categories = Category::all();
+        return view('questions.create', compact('categories'));
     }
 
-    public function store( $id, Request $request){
+    public function store(Request $request){
+        //alleen admins mogen dit
+        // if(!Auth::user()->is_admin){
+        //     abort(403);
+        // }
+        
+
+        $validated = $request->validate([
+            'question' => 'required|min:5',
+            'answer' => 'required|min:5',
+            'cat_id' => 'required',
+        ]);  
+
+    
+
+        $question = new Question;
+        $question->question = $validated['question'];
+        $question->answer = $validated['answer'];
+        $question->category_id = $validated['cat_id'];
+        $question->save();
+
+        return redirect()->route('index_qna')->with('status', 'Question added!');
+    }
+
+    public function edit($id){
+        $question = Question::findOrFail($id);
+
         //alleen admins mogen dit
         // if(!Auth::user()->is_admin){
         //     abort(403);
         // }
 
-        $validated = $request->validate([
-            'question' => 'required|min:5',
-            'answer' => 'required|min:5',
-        ]);  
+        return view('questions.edit', compact('question'));
+    }
 
-        $question = new Question;
+    public function update($id,Request $request){
+        $question = Question::findOrFail($id);
+
+        //alleen admins mogen dit
+        // if(!Auth::user()->is_admin){
+        //     abort(403);
+        // }
+        
+        $validated = $request->validate([
+            'question' => 'required|min:3',
+            'answer' => 'required|min:3',
+        ]);
+
         $question->question = $validated['question'];
         $question->answer = $validated['answer'];
-        $question->cat_id = $id;
         $question->save();
 
-        return redirect()->route('index_qna')->with('status', 'Question added!');
+        return redirect()->route('index_qna')->with('status', 'Question updated!');
     }
     
 }
