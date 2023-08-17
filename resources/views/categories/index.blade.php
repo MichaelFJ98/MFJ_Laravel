@@ -49,7 +49,7 @@
                                   <div class="accordion-body">
                                     <p>{{$question->answer}}</p>
                                     @auth
-                                      
+                                      {{-- only admins can see these buttons --}}
                                     @if (Auth::user()->is_admin)
                                       
                                     

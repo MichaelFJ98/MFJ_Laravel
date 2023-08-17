@@ -23,6 +23,7 @@
                 </ul>
 
                 <!-- Right Side Of Navbar -->
+                {{-- added extra dropdown for admin tools which are specific admin functionalities. --}}
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item dropdown">

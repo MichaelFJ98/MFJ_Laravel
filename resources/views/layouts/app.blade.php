@@ -17,6 +17,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
+    {{-- guests will see public layout, auth users will either see admin layout (cusomized navbar with tools) if they're an admin, or the basic public layout if they're normal user --}}
     @guest
         @include("layouts.public")
     @endguest
@@ -29,7 +30,6 @@
     @endauth
 
         <main class="py-4">
-
             @yield('content')
         </main>
     </div>

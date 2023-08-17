@@ -14,6 +14,7 @@
                             <div>
                             <label class="my-1 mr-2" for="cat_id">Category</label>
                             <select class="custom-select" id="cat_id" name="cat_id" required>
+                            {{-- for all categoryies we will make a option tag with linked id and name --}}
                             @for ($i = 0; $i < count($categories); $i++)
                                 @if ($i == 1)
                                 <option value="{{ $categories[$i]->id }}" selected>{{ $categories[$i]->name}}</option>

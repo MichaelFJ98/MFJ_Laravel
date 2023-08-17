@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // user seeders
         \App\Models\User::factory(5)->create();
 
         \App\Models\User::factory()->create([
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        //question seeders 
         \App\Models\Question::factory()->create([
             'question' => 'This is question 1 for first category',
             'answer' => 'This is answer 1 for first category',
@@ -38,8 +40,11 @@ class DatabaseSeeder extends Seeder
             'category_id' => '2',
 
         ]);
+        //article seeders
         \App\Models\Article::factory(3)->create();
+        //contact seeders
         \App\Models\Contact::factory(2)->create();
+        //category seeders
         \App\Models\Category::factory(2)->create();
     }
 }

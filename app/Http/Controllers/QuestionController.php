@@ -31,7 +31,7 @@ class QuestionController extends Controller
     }
 
     public function store(Request $request){
-        //alleen admins mogen dit
+        
         if(!Auth::user()->is_admin){
             abort(403);
         }else{

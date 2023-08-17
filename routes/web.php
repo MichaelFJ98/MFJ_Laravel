@@ -24,7 +24,6 @@ Route::get('/qna', [CategoryController::class, 'index'])->name('index_qna');
 Route::get('/users/{id}', [UserController::class, 'profile'])->name('profile');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-//Route::get('category/{cat_id}/question/create',[QuestionController::class, 'create'])->name('question_create');
 
 
 //update routes
@@ -32,6 +31,7 @@ Route::put('/', [ArticleController::class, 'index'])->name('article_update');
 Route::put('/qna', [CategoryController::class, 'index'])->name('category_update');
 Route::put('/users/{id}', [UserController::class, 'update'])->name('profile_update');
 
+//resource routes
 Route::resource('articles', ArticleController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('questions', QuestionController::class);

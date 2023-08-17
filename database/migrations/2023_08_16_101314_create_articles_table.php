@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('message');
+            //can be NULL -->which means no image available
             $table->string('image')->nullable();
             $table->timestamps();
         });

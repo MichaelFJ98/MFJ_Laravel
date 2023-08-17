@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
+                    {{-- display all filled in contactforms --}}
                     @foreach ($contactForms as $form)
                         <h3>{{$form->name}}</h3>
                         <h4>{{$form->email}}</h4>

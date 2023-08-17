@@ -14,7 +14,7 @@
                     @endif
                     <ul>
 
-                    
+                    {{-- load all users from db that are not admin --}}
                     @foreach ($users as $user)
                     @if (!$user->is_admin)
                     <li>

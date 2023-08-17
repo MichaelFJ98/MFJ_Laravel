@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    //middleware
     public function __construct(){
         $this->middleware('auth',['except' => ['profile','edit']]);
     }
+    
     public function index(Request $request){
         if(!Auth::user()->is_admin){
             abort(403);
@@ -44,7 +46,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
 
-
+        //if request is not from admin we will change accoutn details, else we change power from user.
         if(!$request->is_admin){
             $validated = $request->validate([
                 'name' => 'required|min:3',

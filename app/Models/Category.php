@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    //category can have many questions
     public function questions(){
         return $this->hasMany('App\Models\Question');
     }

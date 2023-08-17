@@ -12,6 +12,7 @@
                 @endif
                 <div class="card-header">
                     Profile of {{$user->name}}
+                    {{-- check if authenticated user is the same user as profiel  --}}
                     @if (Auth::user()->id == $user->id)
                     <a href="{{route('users.edit', Auth::user()->id)}} ">
                         Edit profile
@@ -21,7 +22,7 @@
                 </div>
 
                 <div class="card-body">
-                   
+                   {{-- load user data --}}
                     <h2>Profile picture</h2>
                     @if ($user->avatar != NULL)
                         <img src="{{asset($user->avatar)}}" alt="profile picture" width="250" height="250">

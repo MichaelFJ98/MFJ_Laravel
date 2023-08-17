@@ -18,6 +18,7 @@
                         <h3>{{$article->title}}</h2>
                         <div>
                             <p>{{$article->message}}</p>
+                            {{-- check if image exsits, if it doesn't then we will load default image, else we load path that is indb --}}
                             @if($article->image != NULL)
                                 <img src="{{asset($article->image)}}" alt="article picture" width="300" height="250">
                             @else

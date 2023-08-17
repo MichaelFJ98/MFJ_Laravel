@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('bio');
             $table->date('birthday');
+            //default not an admin
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();

@@ -25,6 +25,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ms-auto">
                     <!-- Authentication Links -->
+                    {{-- guests can see login and register, loged in users will see dropdown with myprofiel and logout --}}
                     @guest
                         @if (Route::has('login'))
                             <li class="nav-item">

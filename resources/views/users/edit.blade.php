@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                {{-- if user == admin he can change the adminrights for that user with custom admin view, else user will get basic form with their data --}}
                 @if (!Auth::user()->is_admin)
                     
                 
