@@ -100,4 +100,15 @@ class ArticleController extends Controller
 
         return redirect()->route('article_update')->with('status', 'Article updated!');
     }
+
+    public function destroy($id){
+        if(Auth::user()->is_admin){
+            $article = Article::findOrFail($id);
+            $article->delete();
+
+            return redirect()->route('index')->with('status', 'Article deleted successfully');
+        }
+        else abort(403, "Only admins can delete articles");
+        
+    }
 }

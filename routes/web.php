@@ -17,11 +17,12 @@ use App\Http\Controllers\QuestionController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//Get routes
 Route::get('/', [ArticleController::class, 'index'])->name('index');
 Route::get('/qna', [CategoryController::class, 'index'])->name('index_qna');
 Route::get('/users/{id}', [UserController::class, 'profile'])->name('profile');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+
 //update routes
 Route::put('/', [ArticleController::class, 'index'])->name('article_update');
 Route::put('/qna', [CategoryController::class, 'index'])->name('category_update');
@@ -34,4 +35,4 @@ Route::resource('users', UserController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

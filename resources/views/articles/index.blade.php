@@ -27,11 +27,18 @@
                         
                         <small>Published at <i>{{$article->created_at->format('H:i d/m/Y ')}}</i></small>
                         {{-- TODO make foradmin only --}}
-                        @if (Auth::user()->is_admin == False)
-                            <a href="{{route('articles.edit', $article->id)}} ">
-                                Edit Article
-                            </a>
-                        @endif
+                        @auth
+                            @if (Auth::user()->is_admin == False)
+                                <a href="{{route('articles.edit', $article->id)}} ">
+                                    Edit Article
+                                </a>
+                                <form  method="post" action="{{route('articles.destroy', $article->id)}} " >
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="DELETE ARTICLE" class="text-danger" onclick="return confirm('Are you sure you want to delete this article')">
+                                </form>
+                            @endif
+                        @endauth
                         <hr>
 
                        
